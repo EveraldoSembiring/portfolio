@@ -98,13 +98,13 @@ a:hover { color: var(--muted); }
 }
 .hero-media { position: absolute; inset: 0; z-index: -1; background: #000; }
 .hero-media img { position: absolute; inset: 0 0 0 18%; width: 82%; height: 100%; object-fit: cover; object-position: 30% 40%; }
-.hero-dim { filter: brightness(0.28) saturate(0.7); }
+.hero-dim { filter: brightness(0.16) saturate(0.55) blur(3px); }
 .hero-lit {
   --x: 62%; --y: 38%; --r: 260px;
   /* the candle's reach: a light mask, not a decorative gradient */
   -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%); /* taste-skill-ignore */
           mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%); /* taste-skill-ignore */
-  filter: brightness(1.05) contrast(1.05);
+  filter: brightness(1.12) contrast(1.08);
 }
 .hero-title { grid-row: 1 / 4; grid-column: 1; margin: 0; display: grid; grid-template-rows: auto 1fr auto; font-weight: 400; }
 .hero-title .line {
