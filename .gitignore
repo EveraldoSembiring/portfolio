@@ -1,0 +1,32 @@
+# Kept local, not published: Claude Code tooling (skills, agents, settings) and the Spec Kit specs
+.claude/
+specs/
+
+# Taste Skill working files (inspector screenshots, reports, dealt direction)
+.taste-skill/
+
+# Impeccable's downloaded engine cache
+.impeccable/
+
+# Dependencies and builds, if the site gets a toolchain later
+node_modules/
+dist/
+build/
+.cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
