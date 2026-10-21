@@ -330,8 +330,13 @@ a:hover { color: var(--muted); }
   .line-2 { margin-left: 0; justify-self: end; margin-bottom: 20px; }
   .hero-copy { margin-left: 0; align-self: start; margin-top: calc(88px + 19vw + 40px); }
   .hero-lead { font-size: 18px; }
-  .hero-caption { position: static; grid-row: 3; grid-column: 1; align-self: end; text-align: left; margin-bottom: 120px; max-width: 26ch; }
-  .hero-media img { inset: 0; width: 100%; object-position: 66% 40%; }
+  .hero-caption { position: absolute; left: var(--margin); right: var(--margin); top: calc(58svh + 14px); text-align: left; max-width: 34ch; }
+  /* the picture becomes a band below the intro, so the note never sits behind the text */
+  .hero { background: #000; }
+  .hero-media { top: 58svh; touch-action: none; }
+  .hero-media img { inset: 0; width: 100%; object-position: 58% 50%; }
+  /* a finger on the picture moves the light instead of scrolling */
+  .hero-title, .hero-caption { pointer-events: none; }
   .strip-images { height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .strip-images img { height: auto; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   .strip-images img:nth-child(n+5) { display: none; }

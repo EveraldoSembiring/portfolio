@@ -11,7 +11,8 @@
   const lit = hero && hero.querySelector('.hero-lit');
   const hint = hero && hero.querySelector('[data-hint]');
   if (hero && lit) {
-    let tx = 0.7, ty = 0.38, x = tx, y = ty, moved = false, t0 = performance.now();
+    const phone = () => hero.clientWidth < 641;
+    let tx = phone() ? 0.5 : 0.7, ty = phone() ? 0.45 : 0.38, x = tx, y = ty, moved = false, t0 = performance.now();
     const aim = (cx, cy) => {
       // measure against the lit picture itself: it is inset from the hero on wide screens
       const r = lit.getBoundingClientRect();
@@ -20,12 +21,13 @@
       if (!moved && hint) { moved = true; hint.textContent = 'Your light, like Gregory’s candle.'; }
     };
     hero.addEventListener('pointermove', (e) => aim(e.clientX, e.clientY));
+    hero.addEventListener('pointerdown', (e) => aim(e.clientX, e.clientY));
     hero.addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) aim(t.clientX, t.clientY); }, { passive: true });
     const tick = (now) => {
       if (!moved && !reduced) {
         const s = (now - t0) / 1000;
-        tx = 0.7 + Math.sin(s * 0.5) * 0.1;
-        ty = 0.38 + Math.cos(s * 0.37) * 0.08;
+        tx = (phone() ? 0.5 : 0.7) + Math.sin(s * 0.5) * 0.1;
+        ty = (phone() ? 0.45 : 0.38) + Math.cos(s * 0.37) * 0.08;
       }
       const ease = reduced ? 1 : (moved ? 0.3 : 0.12);
       x += (tx - x) * ease;
@@ -34,7 +36,8 @@
       lit.style.setProperty('--y', (y * 100).toFixed(2) + '%');
       // the flame breathes a little
       const flicker = reduced ? 0 : Math.sin(now / 170) * 6 + Math.sin(now / 53) * 3;
-      lit.style.setProperty('--r', (Math.min(hero.clientWidth, 1400) * 0.2 + flicker).toFixed(1) + 'px');
+      const w = hero.clientWidth;
+      lit.style.setProperty('--r', ((w < 641 ? w * 0.36 : Math.min(w, 1400) * 0.2) + flicker).toFixed(1) + 'px');
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
